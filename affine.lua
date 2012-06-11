@@ -10,19 +10,15 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 local affine = {}
 
+local mt
+
 local __call = function (self,x,y)
-	local u = {x,y,1}
-	local t = {}
-	for i = 1,2 do
-		t[i] = self[i][1]*u[1] + self[i][2]*u[2] + self[i][3]*u[3]
-	end
-	return unpack(t)
+	return 	self[1][1]*x + self[1][2]*y + self[1][3],
+			self[2][1]*x + self[2][2]*y + self[2][3],
 end
 
-local __mul
-__mul = function (a,b)
-	local t = {__call = __call, __mul = __mul}
-	setmetatable(t,t)
+local __mul = function (a,b)
+	local t = setmetatable({},mt)
 	for i = 1,3 do
 		t[i] = {}
 		for j = 1,3 do
@@ -32,9 +28,10 @@ __mul = function (a,b)
 	return t
 end
 
+mt = {__call = __call, __mul = __mul}
+
 affine.trans = function (dx,dy)
-	local t = {__call = __call, __mul = __mul}
-	setmetatable(t,t)
+	local t = setmetatable({},mt)
 	t[1] = { 1, 0, dx}
 	t[2] = { 0, 1, dy}
 	t[3] = { 0, 0,  1}
@@ -42,8 +39,7 @@ affine.trans = function (dx,dy)
 end
 
 affine.rotate = function(theta)
-	local t = {__call = __call, __mul = __mul}
-	setmetatable(t,t)
+	local t = setmetatable({},mt)
 	t[1] = { 	math.cos(theta),	-math.sin(theta),	0}
 	t[2] = {	math.sin(theta), 	math.cos(theta),	0}
 	t[3] = { 	0, 					0,  				1}
@@ -51,8 +47,7 @@ affine.rotate = function(theta)
 end
 
 affine.scale = function (sx,sy)
-	local t = {__call = __call, __mul = __mul}
-	setmetatable(t,t)
+	local t = setmetatable({},mt)
 	t[1] = { sx, 0, 0}
 	t[2] = { 0, sy, 0}
 	t[3] = { 0, 0,  1}
@@ -60,10 +55,7 @@ affine.scale = function (sx,sy)
 end
 
 affine.shear = function (kx,ky)
-	kx = kx or 1
-	ky = ky or 1
-	local t = {__call = __call, __mul = __mul}
-	setmetatable(t,t)
+	local t = setmetatable({},mt)
 	t[1] = { 1, kx, 0}
 	t[2] = { ky, 1, 0}
 	t[3] = { 0, 0,  1}
