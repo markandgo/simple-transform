@@ -62,6 +62,24 @@ affine.shear = function (kx,ky)
 	return t
 end
 
+affine.inverse = function (u)
+	local t = setmetatable({},mt)
+	local det = u[1][1]*t[2][2] - u[1][2]*t[2][1]
+	assert(det ~= 0, 'transformation is not invertible!')
+	
+	local a = u[1][1]
+	local b = u[1][2]
+	local c = u[2][1]
+	local d = u[2][2]
+	local f1 = ( d * u[1][3] + (-b) * u[2][3])/det
+	local f2 = (-c * u[1][3] +   a  * u[2][3])/det
+	
+	t[1] = { d/det, -b/det, f1}
+	t[2] = {-c/det,  a/det, f2}
+	t[3] = {	 0,  	 0,  1}
+	return t
+end
+
 affine.polar = function (x,y)
 	local r 	= (x^2 + y^2)^0.5
 	local theta = math.atan2(y,x)
