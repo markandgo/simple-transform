@@ -10,6 +10,7 @@ T = a.trans(dx,dy)		-- translates a point by dx and dy
 T = a.rotate(theta)		-- rotates a point by theta angle in radians
 T = a.scale(sx,sy)		-- scales a point by sx and sy
 T = a.shear(kx,ky)		-- shears a point by kx and ky
+T = a.inverse(T)		-- returns the inverse of transformation table T
 
 T(x,y) -- apply transformation to point (x,y)
 
@@ -27,9 +28,15 @@ T(x,y)
 Example:
 
 T	= a.trans(10,10) * a.scale(-1,-1)
+IT  = a.inverse(T)
+
 x,y = T(10,10)
 
 print(x,y) --> 0 0
+
+x,y = (IT*T)(10,10)
+
+print(x,y) --> 10 10
 
 T 	= a.scale(-1,-1) * a.trans(10,10)
 x,y = T(10,10)
