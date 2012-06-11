@@ -14,7 +14,7 @@ T(x,y) -- apply transformation to point (x,y)
 r,theta = a.polar(x,y)		-- convert from cartesian to polar coordinate
 x,y 	= a.cart(r,theta)	-- convert from polar to cartesian coordinate
 
--- use the * operator combine transformations
+-- use the * operator to combine transformations
 -- order of transformation is from left to right
 transf_new = a.trans(dx,dy) * a.scale(sx,sy) 
 
