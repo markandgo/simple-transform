@@ -8,7 +8,7 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 --]]
 
-local coord = {}
+local affine = {}
 
 local __call = function (self,x,y)
 	local u = {x,y,1}
@@ -32,7 +32,7 @@ __mul = function (a,b)
 	return t
 end
 
-coord.trans = function (dx,dy)
+affine.trans = function (dx,dy)
 	local t = {__call = __call, __mul = __mul}
 	setmetatable(t,t)
 	t[1] = { 1, 0, dx}
@@ -41,7 +41,7 @@ coord.trans = function (dx,dy)
 	return t
 end
 
-coord.rotate = function(theta)
+affine.rotate = function(theta)
 	local t = {__call = __call, __mul = __mul}
 	setmetatable(t,t)
 	t[1] = { 	math.cos(theta),	-math.sin(theta),	0}
@@ -50,7 +50,7 @@ coord.rotate = function(theta)
 	return t
 end
 
-coord.scale = function (sx,sy)
+affine.scale = function (sx,sy)
 	local t = {__call = __call, __mul = __mul}
 	setmetatable(t,t)
 	t[1] = { sx, 0, 0}
@@ -59,7 +59,7 @@ coord.scale = function (sx,sy)
 	return t
 end
 
-coord.shear = function (kx,ky)
+affine.shear = function (kx,ky)
 	kx = kx or 1
 	ky = ky or 1
 	local t = {__call = __call, __mul = __mul}
@@ -70,14 +70,14 @@ coord.shear = function (kx,ky)
 	return t
 end
 
-coord.polar = function (x,y)
+affine.polar = function (x,y)
 	local r 	= (x^2 + y^2)^0.5
 	local theta = math.atan2(y,x)
 	return r,theta
 end
 
-coord.cart = function (r,theta)
+affine.cart = function (r,theta)
 	return r*math.cos(theta),r*math.sin(theta)
 end
 
-return coord
+return affine
