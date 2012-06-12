@@ -7,8 +7,10 @@ To load the library: `a = require 'affine'`
 ## Transformations
 
 ---
-All transformation functions return a table `T` that stores the affine transformation matrix. The table `T` can be called as a function to transform a given point (x,y).
-  
+All transformation functions return a table `T` that stores the affine transformation matrix. The table `T` can be called as a function to transform a given point (x,y): 
+
+`x',y' = T(x,y)`
+
 Return a table that stores the translation transformation.
 
 `T = a.trans(dx,dy)`
@@ -52,10 +54,6 @@ x',y' = IT(T(x,y))
 
 print(x',y') -- should be the same as x,y
 ````
-
-Apply the transformation to point (x,y) and return a new point (x',y').
-
-`x',y' = T(x,y)`
 
 ## Combining Transformations
 
