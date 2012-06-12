@@ -6,7 +6,6 @@ To load the library: `a = require 'affine'`
 
 ## Transformations
 
----
 All transformation functions return a table `T` that stores the affine transformation matrix. The table `T` can be called as a function to transform a given point (x,y): 
 
 `x',y' = T(x,y)`
@@ -50,14 +49,13 @@ Example:
 T	= a.shear(kx,ky)
 IT	= a.inverse(T)
 
-x',y' = IT(T(x,y))
+x2,y2 = IT(T(x,y))
 
-print(x',y') -- should be the same as x,y
+print(x2,y2) -- should be the same as x,y
 ````
 
 ## Combining Transformations
 
----
 You can compose transformation tables into a new transformation table by using the `*` operator. Like matrix multiplication, the order in which you multiply transformations matters.
 
 Example:
@@ -67,13 +65,12 @@ T1 = a.trans(dx,dy)
 T2 = a.scale(sx,sy)
 T3 = T1 * T2
 
-x',y' = T3(x,y)
-x',y' = T1(T2(x,y)) -- is the same as above
+x2,y2 = T3(x,y)
+x2,y2 = T1(T2(x,y)) -- is the same as above
 ````
 
 ## Conversions
 
----
 The following functions can be used to transform between polar and cartesian coordinates
 
 Convert from cartesian to polar coordinate
