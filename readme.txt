@@ -4,31 +4,39 @@
 a = require 'affine'
 
 -- transformations:
--- all the following methods return a transformation table 
+-- all the following methods return a transformation table
 -- that can be called as a function to transform a point
-T = a.trans(dx,dy)		-- translates a point by dx and dy
-T = a.rotate(theta)		-- rotates ccw from the origin in radians when x+ is right and y+ is up
-T = a.scale(sx,sy)		-- scales a point by sx and sy
-T = a.shear(kx,ky)		-- shears a point by kx and ky
-T = a.inverse(T)		-- returns the inverse of transformation table T
 
-T(x,y) -- apply transformation to point (x,y)
+-- translate a point by dx and dy
+T = a.trans(dx,dy)
+
+-- rotate counter clockwise from the origin in radians when x+ is right and y+ is up
+T = a.rotate(theta)
+
+-- scale a point with respect to the origin where sx and sy are the scale factor for x and y, respectively
+T = a.scale(sx,sy)
+
+-- shear a point where kx and ky are the shear factor for x and y, respectively
+T = a.shear(kx,ky)
+
+-- return the inverse of transformation table T
+T = a.inverse(T)
+
+-- apply transformation to point (x,y)
+T(x,y)
 
 -- conversions
-r,theta = a.polar(x,y)		-- convert from cartesian to polar coordinate
-x,y 	= a.cart(r,theta)	-- convert from polar to cartesian coordinate
+r,theta	= a.polar(x,y)		-- convert from cartesian to polar coordinate
+x,y		= a.cart(r,theta)	-- convert from polar to cartesian coordinate
 
--- use the * operator to combine transformations
+-- use the * operator to combine transformations into a new transformation table
 -- order of transformation is from right to left
-T = a.trans(dx,dy) * a.scale(sx,sy) 
-
--- apply scale then translation transformation to point (x,y)
-T(x,y)
+T = a.trans(dx,dy) * a.scale(sx,sy)
 
 Example:
 
 T	= a.trans(10,10) * a.scale(-1,-1)
-IT  = a.inverse(T)
+IT	= a.inverse(T)
 
 x,y = T(10,10)
 
@@ -38,7 +46,7 @@ x,y = (IT*T)(10,10)
 
 print(x,y) --> 10 10
 
-T 	= a.scale(-1,-1) * a.trans(10,10)
-x,y = T(10,10)
+T	= a.scale(-1,-1) * a.trans(10,10)
+x,y	= T(10,10)
 
 print(x,y) --> -20 -20
