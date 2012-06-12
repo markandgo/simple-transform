@@ -7,7 +7,7 @@ a = require 'affine'
 -- all the following methods return a transformation table 
 -- that can be called as a function to transform a point
 T = a.trans(dx,dy)		-- translates a point by dx and dy
-T = a.rotate(theta)		-- rotates a point by theta angle in radians
+T = a.rotate(theta)		-- rotates ccw from the origin in radians when x+ is right and y+ is up
 T = a.scale(sx,sy)		-- scales a point by sx and sy
 T = a.shear(kx,ky)		-- shears a point by kx and ky
 T = a.inverse(T)		-- returns the inverse of transformation table T
