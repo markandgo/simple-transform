@@ -85,7 +85,7 @@ x2,y2 = T1(T2(x,y)) -- is the same as above
 
 ## Conversions
 
-The following functions can be used to transform between polar and cartesian coordinates.
+The following functions can be used to transform between polar and cartesian coordinates. Angles are in radians.
 
 Convert from cartesian to polar coordinate:
 
