@@ -8,7 +8,7 @@ To load the library: `a = require 'affine'`
 
 All transformation functions return a table `T` that stores the affine transformation matrix. The table `T` can be called as a function to transform a given point (x,y): 
 
-`x',y' = T(x,y)`
+`x2,y2 = T(x,y)`
 
 ----------------------------
 ### Translation
@@ -17,8 +17,8 @@ Return a table that stores the translation transformation.
 
 `T = a.trans(dx,dy)`
 
-	x' = x + dx
-	y' = y + dy
+	x2 = x + dx
+	y2 = y + dy
 
 ----------------------------
 ### Scaling
@@ -27,8 +27,8 @@ Return a table that stores the scaling transformation. Scaling is with respect t
 
 `T = a.scale(sx,sy)`
 
-	x' = x * sx
-	y' = y * sy
+	x2 = x * sx
+	y2 = y * sy
 
 ----------------------------
 ### Rotation
@@ -37,8 +37,8 @@ Return a table that stores the rotation transformation. Rotation is in radians w
 
 `T = a.rotate(theta)`
 
-	x' = x*cos(theta) - y*sin(theta)
-	y' = x*sin(theta) + y*cos(theta)
+	x2 = x*math.cos(theta) - y*math.sin(theta)
+	y2 = x*math.sin(theta) + y*math.cos(theta)
 
 ----------------------------
 ### Shearing
@@ -47,8 +47,8 @@ Return a table that stores the shearing transformation.
 
 `T = a.shear(kx,ky)`
 
-	x' = x + kx*y
-	y' = y + ky*x
+	x2 = x + kx*y
+	y2 = y + ky*x
 
 ----------------------------
 ### Inversion
