@@ -10,6 +10,8 @@ All transformation functions return a table `T` that stores the affine transform
 
 `x2,y2 = T(x,y)`
 
+Below each transformation function are the formula's for each transformation.
+
 ----------------------------
 ### Translation
 
