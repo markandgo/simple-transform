@@ -10,12 +10,18 @@ All transformation functions return a table `T` that stores the affine transform
 
 `x',y' = T(x,y)`
 
+----------------------------
+### Translation
+
 Return a table that stores the translation transformation.
 
 `T = a.trans(dx,dy)`
 
 	x' = x + dx
 	y' = y + dy
+
+----------------------------
+### Scaling
 
 Return a table that stores the scaling transformation. Scaling is with respect to the origin.
 
@@ -24,6 +30,9 @@ Return a table that stores the scaling transformation. Scaling is with respect t
 	x' = x * sx
 	y' = y * sy
 
+----------------------------
+### Rotation
+
 Return a table that stores the rotation transformation. Rotation is in radians with respect to the origin.
 
 `T = a.rotate(theta)`
@@ -31,13 +40,18 @@ Return a table that stores the rotation transformation. Rotation is in radians w
 	x' = x*cos(theta) - y*sin(theta)
 	y' = x*sin(theta) + y*cos(theta)
 
-Returns a table that stores the shearing transformation.
+----------------------------
+### Shearing
+
+Return a table that stores the shearing transformation.
 
 `T = a.shear(kx,ky)`
 
 	x' = x + kx*y
 	y' = y + ky*x
 
+----------------------------
+### Inversion
 
 Return a table `IT` that has the inverse transformation of `T`.
 
@@ -71,12 +85,12 @@ x2,y2 = T1(T2(x,y)) -- is the same as above
 
 ## Conversions
 
-The following functions can be used to transform between polar and cartesian coordinates
+The following functions can be used to transform between polar and cartesian coordinates.
 
-Convert from cartesian to polar coordinate
+Convert from cartesian to polar coordinate:
 
 	r,theta	= a.polar(x,y)
 
-Convert from polar to cartesian coordinate
+Convert from polar to cartesian coordinate:
 
 	x,y = a.cart(r,theta)
