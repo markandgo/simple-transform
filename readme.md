@@ -72,17 +72,24 @@ print(x2,y2) -- should be the same as x,y
 
 ## Combining Transformations
 
-You can compose transformation tables into a new transformation table by using the `*` operator. Like matrix multiplication, the order in which you multiply transformations matters.
+You can compose transformation tables into a new transformation table by using the `*` operator. Like matrix multiplication, the order in which you multiply transformations matters. The resultant transformation table can also be called or multiplied with other transformation tables.
 
 Example:
 
 ````lua
-T1 = a.trans(dx,dy)
-T2 = a.scale(sx,sy)
+T1 = a.trans(10,10)
+T2 = a.scale(-1,-1)
 T3 = T1 * T2
 
-x2,y2 = T3(x,y)
-x2,y2 = T1(T2(x,y)) -- is the same as above
+x2,y2 = T3(10,10)
+
+print(x2,y2) --> 0 0
+
+T3 = T2 * T1
+
+x2,y2 = T3(10,10)
+
+print(x2,y2) --> -20 -20
 ````
 
 ## Conversions
