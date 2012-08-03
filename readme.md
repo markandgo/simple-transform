@@ -6,9 +6,7 @@ To load the library: `a = require 'affine'`
 
 ## Transformations
 
-All transformation functions return a table `T` that stores the affine transformation matrix. The table `T` can be called as a function to transform a given point (x,y): 
-
-`x2,y2 = T(x,y)`
+All transformation functions return a table `T` that stores the 3x3 transformation matrix. Where i is the i-th row, and j is the j-th column, The value at (i,j) is stored in `T[i][j]`. The table `T` can be called as a function to transform a given point (x,y): `x2,y2 = T(x,y)`
 
 Below each transformation function are the transformation formulas.
 
@@ -70,9 +68,11 @@ x2,y2 = IT(T(x,y))
 print(x2,y2) -- should be the same as x,y
 ````
 
-## Combining Transformations
+## Transformation Operators
 
-You can compose transformation tables into a new transformation table by using the `*` operator. Like matrix multiplication, the order in which you multiply transformations matters. The resultant transformation table can also be called or multiplied with other transformation tables.
+You can compose transformations into a new transformation by using the `*`,`/`, or `^` operator. To get the inverse transformation, you can do: `IT = T^-1` Negative,zero,and non-integer powers are undefined. For division: `A/B` is the same as `A*B^-1`
+
+**Order of operation matters for multiplication and division!**
 
 Example:
 
@@ -89,7 +89,7 @@ T3 = T2 * T1
 
 x2,y2 = T3(10,10)
 
-print(x2,y2) --> -20 -20
+print(x2,y2) --> -20 -20 // order of operation matters!
 ````
 
 ## Conversions

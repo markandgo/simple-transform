@@ -1,5 +1,5 @@
 --[[
-Affine v1.0
+Affine v1.01
 
 Copyright (c) 2012 Minh Ngo
 
@@ -30,7 +30,24 @@ local __mul = function (a,b)
 	return t
 end
 
-mt = {__call = __call, __mul = __mul}
+local __pow = function (a,b)
+	local t
+	if b == -1 then
+		t = affine.inverse(a)
+	elseif b > 1 then
+		for i = 1,math.floor(b)-1 do
+			t = t and t*a or a*a
+		end
+	end
+	return t
+end
+
+local __div = function (a,b)
+	b = affine.inverse(b)
+	return a*b
+end
+
+mt = {__call = __call, __mul = __mul,__pow = __pow,__div = __div}
 
 affine.trans = function (dx,dy)
 	local t = setmetatable({},mt)
