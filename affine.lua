@@ -1,5 +1,5 @@
 --[[
-Affine v1.01
+Affine v1.01a
 
 Copyright (c) 2012 Minh Ngo
 
@@ -31,20 +31,20 @@ local __mul = function (a,b)
 end
 
 local __pow = function (a,b)
-	local t
 	if b == -1 then
-		t = affine.inverse(a)
-	elseif b > 1 then
-		for i = 1,math.floor(b)-1 do
-			t = t and t*a or a*a
+		return affine.inverse(a)
+	elseif b == 0 then
+		return a/a
+	else
+		for i = 2,b do
+			a = a*a
 		end
+		return a
 	end
-	return t
 end
 
 local __div = function (a,b)
-	b = affine.inverse(b)
-	return a*b
+	return a*affine.inverse(b)
 end
 
 mt = {__call = __call, __mul = __mul,__pow = __pow,__div = __div}
