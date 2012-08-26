@@ -59,9 +59,9 @@ end
 
 affine.rotate = function(theta)
 	local t = setmetatable({},mt)
-	t[1] = { 	math.cos(theta),	-math.sin(theta),	0}
-	t[2] = {	math.sin(theta), 	math.cos(theta),	0}
-	t[3] = { 	0, 					0,  				1}
+	t[1] = {math.cos(theta),-math.sin(theta), 0}
+	t[2] = {math.sin(theta), math.cos(theta), 0}
+	t[3] = {0,            0,                  1}
 	return t
 end
 
@@ -95,12 +95,12 @@ affine.inverse = function (u)
 	
 	t[1] = { d/det, -b/det, -f1}
 	t[2] = {-c/det,  a/det, -f2}
-	t[3] = {	 0,  	 0,  1}
+	t[3] = {     0,      0,   1}
 	return t
 end
 
 affine.polar = function (x,y)
-	local r 	= (x^2 + y^2)^0.5
+	local r     = (x^2 + y^2)^0.5
 	local theta = math.atan2(y,x)
 	return r,theta
 end
