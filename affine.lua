@@ -1,4 +1,4 @@
--- Affine v1.01b
+-- Affine v1.01c
 
 local affine = {}
 
@@ -26,10 +26,11 @@ local __pow = function (a,b)
 	elseif b == 0 then
 		return a/a
 	else
+		local c = a
 		for i = 2,b do
-			a = a*a
+			c = c*a
 		end
-		return a
+		return c
 	end
 end
 

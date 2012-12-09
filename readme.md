@@ -70,7 +70,7 @@ print(x2,y2) -- should be the same as x,y
 
 ## Transformation Operators
 
-You can compose transformations into a new transformation by using the `*`,`/`, or `^` operator. To get the inverse transformation, you can do: `IT = T^-1` Negative,zero,and non-integer powers are undefined. For division: `A/B` is the same as `A*B^-1`
+You can compose transformations into a new transformation by using the `*`,`/`, or `^` operator. To get the inverse transformation, you can do: `IT = T^-1` Negative, and non-integer powers are undefined. For division: `A/B` is the same as `A*B^-1`
 
 **Order of operation matters for multiplication and division!**
 
