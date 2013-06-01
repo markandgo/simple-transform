@@ -40,6 +40,14 @@ end
 
 mt = {__call = __call, __mul = __mul,__pow = __pow,__div = __div}
 
+affine.matrix = function (a, b, c, d, e, f) -- svg style
+	local t = setmetatable({},mt)
+	t[1] = { a or 1, c or 0, e or 0}
+	t[2] = { b or 0, d or 1, f or 0}
+	t[3] = {      0,      0,      1}
+	return t
+end
+
 affine.trans = function (dx,dy)
 	local t = setmetatable({},mt)
 	t[1] = { 1, 0, dx}
